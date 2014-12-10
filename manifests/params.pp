@@ -13,7 +13,7 @@ class pam::params {
 
 
     case $::osfamily {
-        'RedHat' {
+        'RedHat': {
             case $::operatingsystemmajrelease {
                 '5': {
                     $pam_d_sshd_template = 'pam/sshd.el5.erb'
