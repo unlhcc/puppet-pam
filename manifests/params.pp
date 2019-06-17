@@ -6,6 +6,7 @@ class pam::params {
 
     $enable_duo = false
     $enable_sssd = false
+    $session_include = undef
 
     $pam_d_sshd_file = '/etc/pam.d/sshd'
     $pam_d_system_auth_ac_file = '/etc/pam.d/system-auth-ac'

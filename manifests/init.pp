@@ -11,6 +11,7 @@ class pam (
     $pam_d_system_auth_ac_template      = $pam::params::pam_d_system_auth_ac_template,
     $pam_d_password_auth_ac_file        = $pam::params::pam_d_password_auth_ac_file,
     $pam_d_password_auth_ac_template    = $pam::params::pam_d_password_auth_ac_template,
+    $session_include                    = $pam::params::session_include,
 ) inherits pam::params {
 
 
