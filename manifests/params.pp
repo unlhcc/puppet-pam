@@ -30,8 +30,13 @@ class pam::params {
                     $pam_d_password_auth_ac_template = 'pam/password-auth-ac.el7.erb'
                     $pam_d_system_auth_ac_template = 'pam/system-auth-ac.el7.erb'
                 }
+                '8': {
+                    $pam_d_sshd_template = 'pam/sshd.el8.erb'
+                    $pam_d_password_auth_ac_template = 'pam/password-auth-ac.el8.erb'
+                    $pam_d_system_auth_ac_template = 'pam/system-auth-ac.el8.erb'
+                }
                 default: {
-                    fail('This PAM module is only supported on EL 5, 6, and 7.')
+                    fail('This PAM module is only supported on EL 5, 6, 7, and 8.')
                 }
             }
         }

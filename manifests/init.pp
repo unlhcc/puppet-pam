@@ -24,7 +24,7 @@ class pam (
     validate_string($pam_d_system_auth_ac_template)
     validate_string($pam_d_password_auth_ac_template)
 
-    
+
     file { 'pam_d_sshd':
         ensure  => file,
         path    => $pam_d_sshd_file,
