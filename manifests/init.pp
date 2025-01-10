@@ -30,7 +30,7 @@ class pam (
         content => template($pam_d_system_auth_template),
     }
 
-    if ($facts[:os]['release']['major'].to_i >= 6) {
+    if (versioncmp($facts['os']['release']['major'], '6') >= 0) {
         file { 'pam_password_auth':
             path    => $pam_d_password_auth_file,
             content => template($pam_d_password_auth_template),
