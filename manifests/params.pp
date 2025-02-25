@@ -3,7 +3,6 @@
 #
 
 class pam::params {
-
     $enable_duo = false
     $enable_sssd = false
     $session_include = []
@@ -12,37 +11,15 @@ class pam::params {
     $pam_d_system_auth_file = '/etc/pam.d/system-auth'
     $pam_d_password_auth_file = '/etc/pam.d/password-auth'
 
-
-    case $::osfamily {
+    case $facts['os']['family'] {
         'RedHat': {
-            case $::operatingsystemmajrelease {
-                '5': {
-                    $pam_d_sshd_template = 'pam/sshd.el5.erb'
-                    $pam_d_system_auth_template = 'pam/system-auth.el5.erb'
-                }
-                '6': {
-                    $pam_d_sshd_template = 'pam/sshd.el6.erb'
-                    $pam_d_password_auth_template = 'pam/password-auth.el6.erb'
-                    $pam_d_system_auth_template = 'pam/system-auth.el6.erb'
-                }
-                '7': {
-                    $pam_d_sshd_template = 'pam/sshd.el7.erb'
-                    $pam_d_password_auth_template = 'pam/password-auth.el7.erb'
-                    $pam_d_system_auth_template = 'pam/system-auth.el7.erb'
-                }
-                '8': {
-                    $pam_d_sshd_template = 'pam/sshd.el8.erb'
-                    $pam_d_password_auth_template = 'pam/password-auth.el8.erb'
-                    $pam_d_system_auth_template = 'pam/system-auth.el8.erb'
-                }
-                default: {
-                    fail('This PAM module is only supported on EL 5, 6, 7, and 8.')
-                }
-            }
+            $maj = $facts['os']['release']['major']
+            $pam_d_sshd_template = "pam/sshd.el${maj}.erb"
+            $pam_d_password_auth_template = "pam/password-auth.el${maj}.erb"
+            $pam_d_system_auth_template = "pam/system-auth.el${maj}.erb"
         }
         default: {
             fail('This PAM module is only supported on RedHat and derivatives.')
         }
     }
-
 }
